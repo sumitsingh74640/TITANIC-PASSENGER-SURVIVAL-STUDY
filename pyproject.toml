@@ -1,0 +1,17 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "titanic-survival"
+version = "1.0.0"
+description = "Titanic Passenger Survival Study — CODTECH Internship deliverable"
+readme = "README.md"
+requires-python = ">=3.10"
+license = {text = "MIT"}
+authors = [{name = "Sumit Kumar"}]
+keywords = ["titanic", "eda", "machine-learning", "classification"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]

@@ -1,0 +1,18 @@
+"""Data loading and integrity checks."""
+from __future__ import annotations
+import pandas as pd
+from pathlib import Path
+from .config import PATHS
+
+REQUIRED_COLUMNS = {"Survived", "Pclass", "Sex", "Age", "SibSp", "Parch", "Fare", "Embarked"}
+
+def load_titanic(path: Path | None = None) -> pd.DataFrame:
+    """Load the Titanic dataset from CSV, validating schema."""
+    path = path or PATHS.raw_csv
+    if not path.exists():
+        raise FileNotFoundError(f"Dataset not found: {path}")
+    df = pd.read_csv(path)
+    missing = REQUIRED_COLUMNS - set(df.columns)
+    if missing:
+        raise ValueError(f"Dataset is missing required columns: {missing}")
+    return df
